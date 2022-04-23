@@ -1,0 +1,13 @@
+{% extends "layout.html" %}
+{% block context %}
+
+{% block contexttop %}
+
+{% endblock %}
+<a class="btn btn-primary" href="{{url_for('current_video')}}">视频</a>
+
+<a class="btn btn-primary" href="{{url_for('current_picture')}}">拍照</a>
+
+<a class="btn btn-primary" href="{{url_for('pic_list')}}">已拍照片</a>
+
+{% endblock %}

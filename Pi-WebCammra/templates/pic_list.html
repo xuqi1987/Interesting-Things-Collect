@@ -1,0 +1,17 @@
+{% extends "layout.html" %}
+{% block title %}树莓派{% endblock %}
+
+<!-- 正文 !-->
+{% block context %}
+
+<div class="row">
+    {% for i in piclist %}
+        <div class="col-md-4"><img src="{{'/static/pic/' + i}}" class="img-thumbnail center-block">
+            <a class="btn btn-danger" href="{{ url_for('del_pic',name=i) }}">删除</a>
+        </div>
+    {% endfor %}
+
+</div>
+
+{% endblock %}
+

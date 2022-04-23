@@ -1,0 +1,15 @@
+{% extends "camera_layout.html" %}
+{% block title %}树莓派{% endblock %}
+
+
+<!-- 正文 !-->
+{% block contexttop %}
+<div class="container">
+   <img src="{{ url_for('video_feed') }}" class="img-thumbnail center-block">
+</div>
+<a class="btn btn-default" href="{{ url_for('scale_video',num=80) }}" role="button">缩小</a>
+<a class="btn btn-default" href="{{ url_for('scale_video',num=120) }}" role="button">放大</a>
+<a class="btn btn-default" href="{{ url_for('quality_video',num=80) }}" role="button">低画质</a>
+<a class="btn btn-default" href="{{ url_for('quality_video',num=200) }}" role="button">高画质</a>
+<a class="btn btn-default" href="{{ url_for('reset_video') }}" role="button">原画</a>
+{% endblock %}
