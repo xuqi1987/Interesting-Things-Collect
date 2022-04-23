@@ -1,0 +1,243 @@
+<div class="row" id="list" ng-controller="DownloadListController" ng-init="initList()">
+    <div class="col-sm-12">
+        <ul class="list-group" ng-repeat="download in list_datas">
+            <li class="list-group-item">
+
+                <div class="download-name download-item download-controls">
+                    <!-- {{{ download control buttons -->
+                    <div class="btn-group" role="group">
+                        <button
+                                ng-if="hasStatus(download, ['active', 'waiting'])"
+                                class="btn btn-default"
+                                ng-click="pause(download)">
+                            <span class="fa fa-fw fa-pause"></span>
+                        </button>
+
+                        <button
+                                ng-if="hasStatus(download, 'paused')"
+                                class="btn btn-default"
+                                ng-click="resume(download)">
+                            <span class="fa fa-fw fa-play"></span>
+                        </button>
+
+
+                        <button
+                                class="btn btn-default hidden-phone"
+                                ng-click="remove(download)">
+                            <span class="fa fa-fw fa-stop"></span>
+                        </button>
+
+                        <button
+                                ng-if="hasStatus(download, 'paused')"
+                                class="btn btn-default"
+                        >
+                            <span class="fa fa-fw fa-list"></span>
+                        </button>
+
+
+                    </div>
+                    <!-- }}} -->
+
+                    <div class="title">
+                        {{download.downloadpath.split("/").slice(b.length-1, b.length).toString(String)}}
+                    </div>
+                </div>
+
+
+                <div class="download-overview download-item clearfix" ng-switch="download.status">
+                    <!-- {{{ statistics -->
+                    <ul class="stats pull-left" ng-switch-when="active">
+                        <!-- {{{ active download statistics -->
+                        <li class="label label-active hidden-phone hidden-tablet">
+                            <span title="{{ '下载状态' }}"><span class="fa fa-fw fa-play">&nbsp;</span> {{download.status}}</span>
+                        </li>
+
+                        <li class="label label-default" ng-class="{'label-active': download.downloadSpeed > 2048, 'label-warning': download.downloadSpeed <= 2048}">
+                            <span title="{{ '下载速度' }}"><span class="fa fa-fw fa-arrow-circle-o-down">&nbsp;</span> {{download.downloadSpeed}}</span>
+                        </li>
+
+
+                        <li class="label label-active">
+                            <span title="{{ '预计剩余时间' }}"><span class="fa fa-fw fa-clock-o">&nbsp;</span> {{getEta(download)}}</span>
+                        </li>
+
+                        <li class="label label-active hidden-phone">
+                            <span title="{{ '下载总大小' }}"><span class="fa fa-fw fa-cloud-download">&nbsp;</span> {{download.totalLength}}</span>
+                        </li>
+
+                        <li class="label label-active hidden-phone">
+                            <span title="{{ '已下载' }}"><span class="fa fa-fw fa-arrow-circle-o-down">&nbsp;</span> {{download.completedLength}}</span>
+                        </li>
+
+                        <li class="label label-active hidden-phone hidden-tablet">
+                            <span title="{{ '进度' }}"><span class="fa fa-fw fa-chevron-right">&nbsp;</span> {{getProgress(download)}}%</span>
+                        </li>
+
+                        <!-- }}} -->
+                    </ul>
+
+                    <ul class="stats pull-left" ng-switch-when="verifing">
+                        <!-- {{{ active download statistics -->
+                        <li class="label label-warning hidden-phone hidden-tablet">
+                            <span title="{{ '下载状态' }}"><span class="fa fa-fw fa-play">&nbsp;</span> {{download.status}}</span>
+                        </li>
+
+                        <li class="label label-default" ng-class="{'label-active': download.downloadSpeed > 2048, 'label-warning': download.downloadSpeed <= 2048}">
+                            <span title="{{ '下载速度' }}"><span class="fa fa-fw fa-arrow-circle-o-down">&nbsp;</span> {{download.downloadSpeed }}</span>
+                        </li>
+
+                        <li class="label label-active">
+                            <span title="{{ '预计剩余时间' }}"><span class="fa fa-fw fa-clock-o">&nbsp;</span> {{getEta(download)}}</span>
+                        </li>
+
+                        <li class="label label-active hidden-phone">
+                            <span title="{{ '下载总大小' }}"><span class="fa fa-fw fa-cloud-download">&nbsp;</span> {{download.totalLength}}</span>
+                        </li>
+
+                        <li class="label label-active hidden-phone">
+                            <span title="{{ '已下载' }}"><span class="fa fa-fw fa-arrow-circle-o-down">&nbsp;</span> {{download.completedLength}}</span>
+                        </li>
+
+                        <li class="label label-active hidden-phone hidden-tablet">
+                            <span title="{{ '进度' }}"><span class="fa fa-fw fa-chevron-right">&nbsp;</span> {{getProgress(download)}}%</span>
+                        </li>
+
+                        <!-- }}} -->
+                    </ul>
+
+                    <ul class="stats pull-left" ng-switch-when="verifyPending">
+                        <!-- {{{ active download statistics -->
+                        <li class="label label-warning hidden-phone hidden-tablet">
+                            <span title="{{ '下载状态' }}"><span class="fa fa-fw fa-play">&nbsp;</span> {{download.status}}</span>
+                        </li>
+
+                        <li class="label label-default" ng-class="{'label-active': download.downloadSpeed > 2048, 'label-warning': download.downloadSpeed <= 2048}">
+                            <span title="{{ '下载速度' }}"><span class="fa fa-fw fa-arrow-circle-o-down">&nbsp;</span> {{download.downloadSpeed}}</span>
+                        </li>
+
+                        <li class="label label-active">
+                            <span title="{{ '预计剩余时间' }}"><span class="fa fa-fw fa-clock-o">&nbsp;</span> {{getEta(download)}}</span>
+                        </li>
+
+                        <li class="label label-active hidden-phone">
+                            <span title="{{ '下载总大小' }}"><span class="fa fa-fw fa-cloud-download">&nbsp;</span> {{download.totalLength}}</span>
+                        </li>
+
+                        <li class="label label-active hidden-phone">
+                            <span title="{{ '已下载' }}"><span class="fa fa-fw fa-arrow-circle-o-down">&nbsp;</span> {{download.completedLength}}</span>
+                        </li>
+
+                        <li class="label label-active hidden-phone hidden-tablet">
+                            <span title="{{ '进度' }}"><span class="fa fa-fw fa-chevron-right">&nbsp;</span> {{getProgress(download)}}%</span>
+                        </li>
+
+                        <!-- }}} -->
+                    </ul>
+
+                    <ul class="stats pull-left" ng-switch-when="paused">
+                        <!-- {{{ paused download statistics -->
+                        <li class="label label-info">
+                            <span title="{{ '下载状态' }}"><span class="fa fa-fw fa-pause">&nbsp;</span> {{download.status}}</span>
+                        </li>
+
+                        <li class="label label-info">
+                            <span title="{{ '下载总大小' }}"><span class="fa fa-fw fa-cloud-download">&nbsp;</span> {{download.totalLength}}</span>
+                        </li>
+
+                        <li class="label label-info hidden-phone">
+                            <span title="{{ '已下载' }}"><span class="fa fa-fw fa-download">&nbsp;</span> {{download.completedLength}}</span>
+                        </li>
+
+                        <li class="label label-info hidden-phone">
+                            <span title="{{ '下载路径' }}"><span class="fa fa-fw fa-folder-open">&nbsp;</span> {{download.dir}}</span>
+                        </li>
+
+                        <!--  }}} -->
+                    </ul>
+
+                    <ul class="stats pull-left" ng-switch-when="waiting">
+                        <!-- {{{ paused download statistics -->
+                        <li class="label label-default">
+                            <span title="{{ '下载状态' }}"><span class="fa fa-fw fa-caret-right">&nbsp;</span> {{download.status}}</span>
+                        </li>
+
+                        <li class="label label-default">
+                            <span title="{{ '下载总大小' }}"><span class="fa fa-fw fa-cloud-download">&nbsp;</span> {{download.totalLength}}</span>
+                        </li>
+
+                        <li class="label label-default hidden-phone">
+                            <span title="{{ '已下载' }}"><span class="fa fa-fw fa-download">&nbsp;</span> {{download.completedLength}}</span>
+                        </li>
+
+                        <li class="label label-default hidden-phone">
+                            <span title="{{ '下载路径' }}"><span class="fa fa-fw fa-folder-open">&nbsp;</span> {{download.dir}}</span>
+                        </li>
+
+                        <!--  }}} -->
+                    </ul>
+
+                    <ul class="stats pull-left" ng-switch-when="complete">
+                        <!-- {{{ complete download statistics -->
+
+                        <li class="label label-success">
+                            <span title="{{ '下载状态' }}"><span class="fa fa-fw fa-check-square-o">&nbsp;</span> {{download.status}}</span>
+                        </li>
+
+                        <li class="label label-success">
+                            <span title="{{ '下载总大小' }}"><span class="fa fa-fw fa-cloud-download">&nbsp;</span> {{download.totalLength}}</span>
+                        </li>
+
+                        <li class="label label-success hidden-phone">
+                            <span title="{{ '下载路径' }}"><span class="fa fa-fw fa-folder-open">&nbsp;</span> {{download.dir}}</span>
+                        </li>
+
+                        <!-- }}} -->
+                    </ul>
+
+                    <ul class="stats pull-left" ng-switch-when="removed">
+                        <!-- {{{ removed download statistics -->
+                        <li class="label label-warning">
+                            <span title="{{ '下载状态' }}"><span class="fa fa-fw fa-times">&nbsp;</span> {{download.status}}</span>
+                        </li>
+
+                        <li class="label label-warning">
+                            <span title="{{ '下载总大小'  }}"><span class="fa fa-fw fa-cloud-download">&nbsp;</span> {{download.totalLength}}</span>
+                        </li>
+
+                        <li class="label label-warning hidden-phone">
+                            <span title="{{ '下载路径' }}"><span class="fa fa-fw fa-folder-open">&nbsp;</span> {{download.dir}}</span>
+                        </li>
+
+                        <!-- }}} -->
+                    </ul>
+
+                    <ul class="stats pull-left" ng-switch-when="error">
+
+                        <!-- {{{ error download statistics -->
+                        <li class="label label-danger">
+                            <span title="{{ 'Error ' }}"><span class="fa fa-fw fa-times-circle">&nbsp;</span> {{getErrorStatus(download.errorCode)}}</span>
+                        </li>
+
+                        <li class="label label-default">
+                            <span title="{{ '下载总大小' }}"><span class="fa fa-fw fa-cloud-download">&nbsp;</span> {{download.totalLength}}</span>
+                        </li>
+
+                        <li class="label label-default hidden-phone">
+                            <span title="{{ '下载路径' }}"><span class="fa fa-fw fa-folder-open">&nbsp;</span> {{download.dir}}</span>
+                        </li>
+
+                        <!-- }}} -->
+                    </ul>
+
+                    <!-- }}} -->
+                </div>
+                <div class="download-progress download-item">
+                    <div class="progress">
+                        <div ng-class="'progress-bar progress-bar-striped ' + getProgressClass(download)" style="width: {{getProgress(download)}}%;"></div>
+
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>

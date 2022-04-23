@@ -1,0 +1,40 @@
+//Function ID
+enum   FunctionID
+{
+ eFktID_Communication		= 6000;		//通信协议和消息封装
+}
+
+//categoryID
+
+enum CategoryID                
+{ 
+eCatID_CommunicationSetUp			= 0;	//通信协议和消息封装
+}
+
+
+//commandID
+enum  CommandID           
+{
+
+	eCmd_ServerTxCommunicationSyncNotify					= 0;	//通信协议和消息封装
+	eCmd_PiTxCommunicationHandShakeNotify				= 1;	//通信协议和消息封装
+	eCmd_ServerTxGetPiSupportFunctionReq				= 2;	//通信协议和消息封装
+	eCmd_PiTxGetPiSupportFunctionAck				= 3;	//通信协议和消息封装
+	eCmd_PiTxPiKeepAliveReq							= 4;	//通信协议和消息封装
+	eCmd_ServerTxPiKeepAliveAck						= 5;	//通信协议和消息封装
+	eCmd_ServerTxCommunicationGoodbyeNotify				= 6;	//通信协议和消息封装
+
+}
+
+//message
+message  PiTxCommunicationHandShakeNotify
+{
+	required   string   PiInfo = 1;
+	required   string   PiVendorInfo = 2;
+	required   uint32   CommunicationProtocolVersion  = 3;
+}
+
+message  PiTxGetPiSupportFunctionAck
+{
+	required  bool   CommunicationSetUp  = 1;
+}

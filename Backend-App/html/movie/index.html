@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="movieApp">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Title</title>
+
+    <!-- 新 Bootstrap 核心 CSS 文件 -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <!--<link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.0/css/bootstrap.min.css">-->
+
+    <!-- 可选的Bootstrap主题文件（一般不用引入） -->
+    <!--<link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.0/css/bootstrap-theme.min.css">-->
+    <link rel="stylesheet" href="css/bootstrap-theme.min.css">
+
+    <!-- Latest compiled and minified CSS -->
+    <!--<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.11.0/bootstrap-table.min.css">-->
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="css/custom.css">
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/flag-icon.min.css">
+
+    <!--<link rel="stylesheet" href="css/style.css">-->
+    <link rel="stylesheet" href="css/download.css">
+    <link rel="stylesheet" href="css/modals.css">
+
+
+    <link rel="stylesheet" href="css/blueimp-gallery.css">
+    <link rel="stylesheet" href="css/blueimp-gallery-indicator.css">
+    <link rel="stylesheet" href="css/blueimp-gallery-video.css">
+    <link rel="stylesheet" href="css/demo.css">
+
+</head>
+<body>
+
+<div class="container" >
+    </br>
+    <div ng-include="'view/NavigationBar.html'"></div>
+    <ng-view></ng-view>
+</div>
+
+<!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+<!--<script src="http://cdn.bootcss.com/jquery/1.11.1/jquery.min.js"></script>-->
+<script src="lib/jquery.min.js"></script>
+<!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+<!--<script src="http://cdn.bootcss.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>-->
+<script src="lib/bootstrap.min.js"></script>
+
+<!--&lt;!&ndash; Latest compiled and minified JavaScript &ndash;&gt;-->
+<!--<script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.11.0/bootstrap-table.min.js"></script>-->
+
+<!--&lt;!&ndash; Latest compiled and minified Locales &ndash;&gt;-->
+<!--<script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.11.0/locale/bootstrap-table-zh-CN.min.js"></script>-->
+
+<!--<script src="//cdn.static.runoob.com/libs/angular.js/1.4.6/angular.min.js"></script>-->
+<script src="lib/spin.min.js"></script>
+
+<script src="lib/angular/angular.js"></script>
+
+<script src="lib/blueimp-helper.js"></script>
+<script src="lib/blueimp-gallery.js"></script>
+<script src="lib/blueimp-gallery-fullscreen.js"></script>
+<script src="lib/blueimp-gallery-indicator.js"></script>
+<script src="lib/blueimp-gallery-video.js"></script>
+<script src="lib/blueimp-gallery-vimeo.js"></script>
+<script src="lib/blueimp-gallery-youtube.js"></script>
+<script src="lib/jquery.js"></script>
+<script src="lib/jquery.blueimp-gallery.js"></script>
+<script src="lib/clipboard.min.js"></script>
+
+<script src="lib/angular/angular-route.js"></script>
+<script src="lib/angular/angular-resource.js"></script>
+<script src="js/app.js"></script>
+<script src="js/services/MovieDataService.js"></script>
+<script src="js/controllers/MovieListController.js"></script>
+<script src="js/controllers/NavigationBarController.js"></script>
+<script src="js/controllers/DownloadListController.js"></script>
+<script src="js/controllers/PlayerController.js"></script>
+
+
+
+
+
+</body>
+</html>
